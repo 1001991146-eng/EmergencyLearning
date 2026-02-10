@@ -32,31 +32,45 @@
             border-color: #22c55e;
             color: #166534;
         }
+        .step-number {
+            flex-shrink: 0;
+            width: 2.5rem;
+            height: 2.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 9999px;
+            font-weight: bold;
+        }
     </style>
 </head>
 <body class="text-gray-800">
 
     <!-- Header -->
-    <header class="bg-white border-b border-gray-200 sticky top-0 z-50">
+    <header class="bg-white border-b border-gray-200 sticky top-0 z-50 shadow-sm">
         <div class="max-w-6xl mx-auto px-4 py-4 flex flex-col md:flex-row justify-between items-center gap-4">
-            <div class="flex items-center gap-3">
-                <div class="bg-blue-600 p-2 rounded-lg text-white">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+            <div class="flex items-center gap-3 w-full md:w-auto">
+                <div class="bg-blue-600 p-2 rounded-lg text-white hidden md:block">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 10v6M2 10v6"/><path d="M12 2a7 7 0 0 1 7 7v6l3 3H2l3-3V9a7 7 0 0 1 7-7z"/></svg>
                 </div>
                 <div>
-                    <h1 class="text-2xl font-bold text-gray-900 leading-tight">מרכז תרגיל למידה בחירום</h1>
-                    <p class="text-sm text-gray-500 font-medium">ליווי טכנו-פדגוגי לצוות ההוראה והתלמידים</p>
+                    <h1 class="text-xl md:text-2xl font-bold text-gray-900 leading-tight">בית הספר הרב תחומי למדעים ולאמנויות עמל חדרה</h1>
+                    <div class="flex flex-col md:flex-row md:items-center gap-1 md:gap-3 text-sm text-gray-500 font-medium">
+                        <span>מרכז תרגיל למידה בחירום</span>
+                        <span class="hidden md:inline">•</span>
+                        <span>רכזת טכנו-פדגוגיה: מריאלה שטיין 050-8456642</span>
+                    </div>
                 </div>
             </div>
             
-            <nav id="mainNav" class="flex flex-wrap justify-center gap-2">
-                <button onclick="showTab('home')" id="btn-home" class="nav-button active flex items-center gap-2 px-4 py-2 rounded-lg transition-all text-gray-600 hover:bg-blue-50">ראשי</button>
-                <button onclick="showTab('mashov')" id="btn-mashov" class="nav-button flex items-center gap-2 px-4 py-2 rounded-lg transition-all text-gray-600 hover:bg-blue-50">דיווח משו"ב</button>
-                <button onclick="showTab('sync')" id="btn-sync" class="nav-button flex items-center gap-2 px-4 py-2 rounded-lg transition-all text-gray-600 hover:bg-blue-50">מפגש סינכרוני</button>
-                <button onclick="showTab('teacher_async')" id="btn-teacher_async" class="nav-button flex items-center gap-2 px-4 py-2 rounded-lg transition-all text-gray-600 hover:bg-blue-50">מטלה (מורה)</button>
-                <button onclick="showTab('student_async')" id="btn-student_async" class="nav-button flex items-center gap-2 px-4 py-2 rounded-lg transition-all text-gray-600 hover:bg-blue-50">מטלה (תלמיד)</button>
-                <button onclick="showTab('checklist')" id="btn-checklist" class="nav-button flex items-center gap-2 px-4 py-2 rounded-lg transition-all text-gray-600 hover:bg-blue-50">Checklist</button>
-                <button onclick="showTab('report')" id="btn-report" class="nav-button flex items-center gap-2 px-4 py-2 rounded-lg transition-all text-gray-600 hover:bg-blue-50">דיווח סיום</button>
+            <nav id="mainNav" class="flex flex-wrap justify-center gap-2 text-sm md:text-base">
+                <button onclick="showTab('home')" id="btn-home" class="nav-button active flex items-center gap-2 px-3 py-2 rounded-lg transition-all text-gray-600 hover:bg-blue-50">ראשי</button>
+                <button onclick="showTab('mashov')" id="btn-mashov" class="nav-button flex items-center gap-2 px-3 py-2 rounded-lg transition-all text-gray-600 hover:bg-blue-50">נוכחות משו"ב</button>
+                <button onclick="showTab('sync')" id="btn-sync" class="nav-button flex items-center gap-2 px-3 py-2 rounded-lg transition-all text-gray-600 hover:bg-blue-50">מפגש סינכרוני</button>
+                <button onclick="showTab('teacher_async')" id="btn-teacher_async" class="nav-button flex items-center gap-2 px-3 py-2 rounded-lg transition-all text-gray-600 hover:bg-blue-50">מטלה (מורה)</button>
+                <button onclick="showTab('student_async')" id="btn-student_async" class="nav-button flex items-center gap-2 px-3 py-2 rounded-lg transition-all text-gray-600 hover:bg-blue-50">מטלה (תלמיד)</button>
+                <button onclick="showTab('checklist')" id="btn-checklist" class="nav-button flex items-center gap-2 px-3 py-2 rounded-lg transition-all text-gray-600 hover:bg-blue-50">Checklist</button>
+                <button onclick="showTab('report')" id="btn-report" class="nav-button flex items-center gap-2 px-3 py-2 rounded-lg transition-all text-gray-600 hover:bg-blue-50">דיווח</button>
             </nav>
         </div>
     </header>
@@ -65,15 +79,15 @@
         
         <!-- Home Tab -->
         <div id="home" class="tab-content active">
-            <div class="bg-blue-600 rounded-2xl p-8 text-white shadow-xl relative overflow-hidden mb-8">
+            <div class="bg-gradient-to-r from-blue-600 to-blue-800 rounded-2xl p-8 text-white shadow-xl relative overflow-hidden mb-8">
                 <div class="relative z-10">
                     <h2 class="text-3xl font-bold mb-4">מתרגלים מוכנות לחירום</h2>
                     <p class="text-lg opacity-90 mb-6 max-w-2xl">
-                        התרגיל נועד לוודא שכולנו - מורים ותלמידים - יודעים כיצד לעבור ללמידה מרחוק בצורה חלקה ומהירה בעת הצורך.
+                        התרגיל נועד לוודא שכולנו - מורים ותלמידים - יודעים כיצד לעבור ללמידה מרחוק בצורה חלקה ומהירה.
                     </p>
-                    <div class="flex flex-wrap gap-4">
-                        <span class="bg-white/20 px-4 py-2 rounded-full text-sm font-medium">חברה ערבית: 15-19.2</span>
-                        <span class="bg-white/20 px-4 py-2 rounded-full text-sm font-medium">שאר בתיה"ס: 22-25.2</span>
+                    <div class="inline-flex items-center bg-white/20 backdrop-blur-sm px-6 py-3 rounded-full text-lg font-bold border border-white/30 shadow-lg">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="ml-2"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+                        תאריך התרגיל: 22.2.2026
                     </div>
                 </div>
             </div>
@@ -82,34 +96,48 @@
                 <div class="bg-white p-6 rounded-xl shadow-sm border border-gray-100">
                     <h3 class="text-xl font-bold mb-4 flex items-center gap-2 text-blue-700">
                         <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg>
-                        לוח זמני התרגיל
+                        לוח זמני התרגיל (22.2.26)
                     </h3>
                     <ul class="space-y-4">
                         <li class="flex items-start gap-2 text-gray-700">
-                            <span class="text-blue-600 mt-1">●</span>
-                            <span><strong>שעות הבוקר:</strong> דיווח נוכחות במשו"ב ופרסום המטלה בקלאסרום.</span>
+                            <span class="text-blue-600 mt-1 font-bold">08:00-10:00</span>
+                            <span>דיווח נוכחות במשו"ב.</span>
                         </li>
                         <li class="flex items-start gap-2 text-gray-700">
-                            <span class="text-blue-600 mt-1">●</span>
-                            <span><strong>במהלך היום:</strong> קיום מפגש סינכרוני קצר (כ-20 דקות) ב-Meet.</span>
+                            <span class="text-blue-600 mt-1 font-bold">במהלך היום</span>
+                            <span>קיום מפגש סינכרוני (כ-20 דקות) ב-Meet בשעות הלימודים.</span>
                         </li>
                         <li class="flex items-start gap-2 text-gray-700">
-                            <span class="text-blue-600 mt-1">●</span>
-                            <span><strong>15:00-21:00:</strong> ביצוע המטלה על ידי התלמידים והגשתה.</span>
+                            <span class="text-blue-600 mt-1 font-bold">15:00</span>
+                            <span>פרסום המטלה בקלאסרום (ניתן להכין כטיוטה מראש).</span>
+                        </li>
+                        <li class="flex items-start gap-2 text-gray-700">
+                            <span class="text-blue-600 mt-1 font-bold">עד 21:00</span>
+                            <span>הגשת המטלה על ידי התלמידים.</span>
                         </li>
                     </ul>
                 </div>
                 <div class="bg-blue-50 p-6 rounded-xl border border-blue-100">
                     <h3 class="text-xl font-bold text-blue-800 mb-4">קישורים מהירים</h3>
                     <div class="space-y-3">
-                        <a href="https://mosdot.education.gov.il/personal/identification/" target="_blank" class="block bg-white p-4 rounded-lg shadow-sm hover:shadow-md transition-all flex justify-between items-center text-blue-700 font-semibold border border-blue-100">
-                            <span>הזדהות אחידה משרד החינוך</span>
-                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m15 18-6-6 6-6"/></svg>
+                        <a href="https://mosdot.education.gov.il/personal/identification/" target="_blank" class="block bg-white p-4 rounded-lg shadow-sm hover:shadow-md transition-all flex justify-between items-center text-blue-700 font-semibold border border-blue-100 group">
+                            <span class="flex items-center gap-2">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg>
+                                בית הספר הוירטואלי
+                            </span>
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="group-hover:translate-x-[-2px] transition-transform"><path d="m15 18-6-6 6-6"/></svg>
                         </a>
-                        <a href="https://ms0157.github.io/ToolsAmalHadera/" target="_blank" class="block bg-white p-4 rounded-lg shadow-sm hover:shadow-md transition-all flex justify-between items-center text-blue-700 font-semibold border border-blue-100">
-                            <span>אתר הכלים הדיגיטליים</span>
-                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m15 18-6-6 6-6"/></svg>
+                        <a href="https://ms0157.github.io/ToolsAmalHadera/" target="_blank" class="block bg-white p-4 rounded-lg shadow-sm hover:shadow-md transition-all flex justify-between items-center text-blue-700 font-semibold border border-blue-100 group">
+                            <span class="flex items-center gap-2">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
+                                אתר הכלים הדיגיטליים
+                            </span>
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="group-hover:translate-x-[-2px] transition-transform"><path d="m15 18-6-6 6-6"/></svg>
                         </a>
+                    </div>
+                    <div class="mt-6 pt-4 border-t border-blue-200 text-sm text-blue-800">
+                        <p class="font-bold">צריכים עזרה?</p>
+                        <p>מריאלה שטיין: 050-8456642</p>
                     </div>
                 </div>
             </div>
@@ -121,24 +149,24 @@
                 <h2 class="text-2xl font-bold mb-6 border-b pb-4 text-blue-800">1. דיווח נוכחות במשו"ב</h2>
                 <div class="space-y-8">
                     <div class="flex gap-4">
-                        <div class="w-10 h-10 bg-blue-600 text-white rounded-full flex items-center justify-center font-bold">1</div>
+                        <div class="step-number bg-blue-600 text-white">1</div>
                         <div>
                             <h4 class="text-lg font-bold mb-1">כניסה למערכת</h4>
                             <p class="text-gray-600">היכנסו לאפליקציית משו"ב (או מהדפדפן) באמצעות פרטי ההזדהות האחידה שלכם.</p>
                         </div>
                     </div>
                     <div class="flex gap-4">
-                        <div class="w-10 h-10 bg-blue-600 text-white rounded-full flex items-center justify-center font-bold">2</div>
+                        <div class="step-number bg-blue-600 text-white">2</div>
                         <div>
                             <h4 class="text-lg font-bold mb-1">בחירת שיעור התרגיל</h4>
                             <p class="text-gray-600">גשו ליומן המורה ובחרו את השיעור שבו מתקיים התרגיל עבור הכיתה שלכם.</p>
                         </div>
                     </div>
                     <div class="flex gap-4">
-                        <div class="w-10 h-10 bg-blue-600 text-white rounded-full flex items-center justify-center font-bold">3</div>
+                        <div class="step-number bg-blue-600 text-white">3</div>
                         <div>
                             <h4 class="text-lg font-bold mb-1">דיווח סטטוס קשר</h4>
-                            <p class="text-gray-600">סמנו 'נוכח' לתלמיד שקיים קשר. המטרה היא להגיע ל-100% דיווח במערכת עד השעה 10:00 בבוקר התרגיל.</p>
+                            <p class="text-gray-600">סמנו 'נוכח' לתלמיד שקיים קשר. המטרה: <strong>100% דיווח</strong> עד השעה 10:00 בבוקר התרגיל.</p>
                         </div>
                     </div>
                 </div>
@@ -149,30 +177,60 @@
         <div id="sync" class="tab-content">
             <div class="bg-white p-8 rounded-2xl shadow-sm border border-gray-100">
                 <h2 class="text-2xl font-bold mb-6 border-b pb-4 text-blue-800">2. קיום מפגש סינכרוני (Meet)</h2>
-                <div class="bg-amber-50 border-r-4 border-amber-400 p-4 mb-8 text-amber-900 rounded-l">
-                    <strong>שימו לב:</strong> המפגש צריך להימשך כ-20 דקות לפחות במהלך שעות הלימודים.
-                </div>
+                
                 <div class="space-y-8">
-                    <div class="flex gap-4">
-                        <div class="w-10 h-10 bg-blue-600 text-white rounded-full flex items-center justify-center font-bold">1</div>
-                        <div>
-                            <h4 class="text-lg font-bold mb-1">התחברות לחשבון edu</h4>
-                            <p class="text-gray-600 font-semibold underline">חשוב מאוד:</p>
-                            <p class="text-gray-600">ודאו שאתם מחוברים בדפדפן לחשבון ה-Google המחוזי (edu-haifa.org.il) ולא לחשבון פרטי.</p>
+                    <!-- Preparation Section -->
+                    <div class="bg-blue-50 p-6 rounded-xl border border-blue-100">
+                        <h3 class="text-lg font-bold text-blue-900 mb-4 flex items-center gap-2">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+                            לפני מועד התרגיל (הכנה)
+                        </h3>
+                        <div class="space-y-4">
+                            <div class="flex gap-4">
+                                <div class="step-number bg-white text-blue-600 border border-blue-200">1</div>
+                                <div>
+                                    <h4 class="font-bold text-gray-800">כניסה לקלאסרום</h4>
+                                    <p class="text-gray-600 text-sm">היכנסו לכיתה הוירטואלית ב-Classroom.</p>
+                                </div>
+                            </div>
+                            <div class="flex gap-4">
+                                <div class="step-number bg-white text-blue-600 border border-blue-200">2</div>
+                                <div>
+                                    <h4 class="font-bold text-gray-800">הפעלת קישור Meet קבוע</h4>
+                                    <p class="text-gray-600 text-sm">אם אין קישור קיים: לחצו על כפתור <strong>'יצירת קישור' (Generate Link)</strong> בראש הדף (באזור הכותרת) או בהגדרות הכיתה.</p>
+                                </div>
+                            </div>
+                            <div class="flex gap-4">
+                                <div class="step-number bg-white text-blue-600 border border-blue-200">3</div>
+                                <div>
+                                    <h4 class="font-bold text-gray-800">וידוא נראות לתלמידים</h4>
+                                    <p class="text-gray-600 text-sm">ודאו שהמתג <strong>'גלוי לתלמידים' (Visible to students)</strong> פעיל ושמרו את השינויים.</p>
+                                </div>
+                            </div>
                         </div>
                     </div>
-                    <div class="flex gap-4">
-                        <div class="w-10 h-10 bg-blue-600 text-white rounded-full flex items-center justify-center font-bold">2</div>
-                        <div>
-                            <h4 class="text-lg font-bold mb-1">פתיחת שיחה והפצת קישור</h4>
-                            <p class="text-gray-600">צרו פגישה חדשה ב-Meet, והפיצו את הקישור לתלמידים דרך ה-Classroom או בוואטסאפ הכיתתי.</p>
-                        </div>
-                    </div>
-                    <div class="flex gap-4">
-                        <div class="w-10 h-10 bg-blue-600 text-white rounded-full flex items-center justify-center font-bold">3</div>
-                        <div>
-                            <h4 class="text-lg font-bold mb-1">מהלך המפגש</h4>
-                            <p class="text-gray-600">בצעו בדיקת נוכחות קולית/ויזואלית, הסבירו על המטלה הא-סינכרונית שתפורסם וודאו שלכולם יש גישה.</p>
+
+                    <!-- Drill Day Section -->
+                    <div class="bg-amber-50 p-6 rounded-xl border border-amber-100">
+                        <h3 class="text-lg font-bold text-amber-900 mb-4 flex items-center gap-2">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 10v6M2 10v6"/><path d="M12 2a7 7 0 0 1 7 7v6l3 3H2l3-3V9a7 7 0 0 1 7-7z"/></svg>
+                            ביום התרגיל (22.2.26)
+                        </h3>
+                        <div class="space-y-4">
+                            <div class="flex gap-4">
+                                <div class="step-number bg-white text-amber-600 border border-amber-200">1</div>
+                                <div>
+                                    <h4 class="font-bold text-gray-800">הצטרפות תלמידים</h4>
+                                    <p class="text-gray-600 text-sm">הנחו את התלמידים להיכנס לקלאסרום וללחוץ על כפתור <strong>'הצטרפות' (Join)</strong> שמופיע בראש הדף בכיתה.</p>
+                                </div>
+                            </div>
+                            <div class="flex gap-4">
+                                <div class="step-number bg-white text-amber-600 border border-amber-200">2</div>
+                                <div>
+                                    <h4 class="font-bold text-gray-800">ניהול המפגש</h4>
+                                    <p class="text-gray-600 text-sm">קיימו מפגש של 20 דקות, בצעו בדיקת נוכחות והסבירו על המטלה שתעלה ב-15:00.</p>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -183,27 +241,36 @@
         <div id="teacher_async" class="tab-content">
             <div class="bg-white p-8 rounded-2xl shadow-sm border border-gray-100">
                 <h2 class="text-2xl font-bold mb-6 border-b pb-4 text-blue-800">3. מטלה א-סינכרונית (מורה)</h2>
-                <p class="mb-6 text-gray-500 italic">ביצוע שלב זה מומלץ יום לפני התרגיל או בבוקר התרגיל עצמו.</p>
+                
                 <div class="space-y-8">
                     <div class="flex gap-4">
-                        <div class="w-10 h-10 bg-blue-600 text-white rounded-full flex items-center justify-center font-bold">1</div>
+                        <div class="step-number bg-blue-600 text-white">1</div>
                         <div>
-                            <h4 class="text-lg font-bold mb-1">כניסה לקלאסרום</h4>
-                            <p class="text-gray-600">היכנסו למרחב הלימודי של הכיתה שלכם דרך 'בית הספר הוירטואלי'.</p>
+                            <h4 class="text-lg font-bold mb-1">יצירת המטלה (מומלץ לפני התרגיל)</h4>
+                            <p class="text-gray-600 mb-2">כנסו ללשונית <strong>'עבודות כיתה' (Classwork)</strong> ולחצו על <strong>'יצירה' > 'מטלה'</strong>.</p>
+                            <ul class="list-disc list-inside text-sm text-gray-600 space-y-1 bg-gray-50 p-3 rounded">
+                                <li><strong>כותרת:</strong> "תרגיל למידה בחירום - [שם המקצוע]"</li>
+                                <li><strong>הוראות:</strong> הוסיפו משימה פשוטה וברורה.</li>
+                                <li><strong>תאריך יעד:</strong> 22.2.2026 שעה 21:00.</li>
+                            </ul>
                         </div>
                     </div>
+
                     <div class="flex gap-4">
-                        <div class="w-10 h-10 bg-blue-600 text-white rounded-full flex items-center justify-center font-bold">2</div>
+                        <div class="step-number bg-blue-600 text-white">2</div>
                         <div>
-                            <h4 class="text-lg font-bold mb-1">פרסום מטלה</h4>
-                            <p class="text-gray-600">צרו 'מטלה' חדשה. כותרת מומלצת: <strong>"תרגיל למידה בחירום - [שם המקצוע]"</strong>.</p>
+                            <h4 class="text-lg font-bold mb-1">שמירה כטיוטה (חשוב!)</h4>
+                            <p class="text-gray-600">אם אתם מכינים את המטלה לפני יום התרגיל: <br>
+                            אל תלחצו על 'יצירת מטלה', אלא על החץ הקטן ליד הכפתור -> ובחרו <strong>'שמירה כטיוטה' (Save Draft)</strong>.</p>
                         </div>
                     </div>
+
                     <div class="flex gap-4">
-                        <div class="w-10 h-10 bg-blue-600 text-white rounded-full flex items-center justify-center font-bold">3</div>
+                        <div class="step-number bg-purple-600 text-white">3</div>
                         <div>
-                            <h4 class="text-lg font-bold mb-1">הגדרת זמנים</h4>
-                            <p class="text-gray-600">הגדירו שתאריך היעד להגשה הוא יום התרגיל עד השעה 21:00. ודאו שהמטלה פשוטה וברורה.</p>
+                            <h4 class="text-lg font-bold mb-1">פרסום המטלה (ביום התרגיל)</h4>
+                            <p class="text-gray-600">ביום התרגיל בשעה <strong>15:00</strong>:<br>
+                            כנסו לטיוטה שיצרתם, ולחצו על <strong>'יצירת מטלה' (Assign)</strong> כדי שהיא תופיע לתלמידים.</p>
                         </div>
                     </div>
                 </div>
@@ -216,24 +283,32 @@
                 <h2 class="text-2xl font-bold mb-6 border-b pb-4 text-blue-800">4. מטלה א-סינכרונית (תלמיד)</h2>
                 <div class="space-y-8">
                     <div class="flex gap-4">
-                        <div class="w-10 h-10 bg-green-600 text-white rounded-full flex items-center justify-center font-bold">1</div>
+                        <div class="step-number bg-green-600 text-white">1</div>
                         <div>
-                            <h4 class="text-lg font-bold mb-1">כניסה למרחב הכיתתי</h4>
-                            <p class="text-gray-600">על התלמיד להיכנס לקלאסרום דרך הזדהות אחידה של משרד החינוך.</p>
+                            <h4 class="text-lg font-bold mb-1">כניסה למערכת</h4>
+                            <p class="text-gray-600">היכנסו לקישור <strong>"בית הספר הוירטואלי"</strong> (כפתור מופיע במסך הראשי של מדריך זה) והזדהו עם פרטי משרד החינוך.</p>
                         </div>
                     </div>
                     <div class="flex gap-4">
-                        <div class="w-10 h-10 bg-green-600 text-white rounded-full flex items-center justify-center font-bold">2</div>
+                        <div class="step-number bg-green-600 text-white">2</div>
                         <div>
-                            <h4 class="text-lg font-bold mb-1">ביצוע המשימה</h4>
-                            <p class="text-gray-600">איתור המטלה שפרסם המורה וביצועה (מענה על טופס, העלאת קובץ או כתיבת תשובה).</p>
+                            <h4 class="text-lg font-bold mb-1">כניסה לקלאסרום</h4>
+                            <p class="text-gray-600">בחרו באריח <strong>Google Classroom</strong> וכנסו לכיתה הרלוונטית.</p>
                         </div>
                     </div>
                     <div class="flex gap-4">
-                        <div class="w-10 h-10 bg-green-600 text-white rounded-full flex items-center justify-center font-bold">3</div>
+                        <div class="step-number bg-green-600 text-white">3</div>
                         <div>
-                            <h4 class="text-lg font-bold mb-1">חובה: לחיצה על "הגשה"</h4>
-                            <p class="text-gray-600">חשוב להנחות את התלמידים ללחוץ על <strong>'הגשה' (Turn In)</strong> בתוך המערכת כדי שהמטלה תיחשב כמבוצעת.</p>
+                            <h4 class="text-lg font-bold mb-1">ביצוע המטלה</h4>
+                            <p class="text-gray-600">פתחו את המטלה "תרגיל למידה בחירום", קראו את ההוראות ובצעו את המשימה (קובץ/טופס וכו').</p>
+                        </div>
+                    </div>
+                    <div class="flex gap-4">
+                        <div class="step-number bg-red-500 text-white animate-pulse">4</div>
+                        <div>
+                            <h4 class="text-lg font-bold mb-1 text-red-600">שלב קריטי: הגשה</h4>
+                            <p class="text-gray-600">בסיום המשימה, חובה ללחוץ על הכפתור השחור/כחול בצד המסך: <strong>'הגשה' (Turn In)</strong>.<br>
+                            <span class="text-sm font-semibold">ללא לחיצה זו, המטלה לא תיחשב כהוגשה!</span></p>
                         </div>
                     </div>
                 </div>
@@ -244,42 +319,42 @@
         <div id="checklist" class="tab-content">
             <div class="bg-white p-8 rounded-2xl shadow-sm border border-gray-100">
                 <h2 class="text-2xl font-bold mb-6 border-b pb-4 text-blue-800">Checklist לסיכום התרגיל</h2>
-                <p class="text-gray-500 mb-6 font-medium italic text-sm">סמנו לעצמכם את השלבים שסיימתם כדי לוודא מוכנות מלאה:</p>
+                <p class="text-gray-500 mb-6 font-medium italic text-sm">סמנו לעצמכם את השלבים שסיימתם:</p>
                 
                 <div class="space-y-4">
                     <div class="flex items-center">
                         <input type="checkbox" id="check1" class="hidden checkbox-custom" onchange="updateChecklistProgress()">
                         <label for="check1" class="flex items-center gap-4 p-4 rounded-xl border-2 border-gray-100 cursor-pointer w-full transition-all hover:bg-gray-50">
                             <span class="w-6 h-6 border-2 border-gray-300 rounded flex items-center justify-center bg-white transition-all check-box-inner"></span>
-                            <span class="text-lg">דיווחתי נוכחות במשו"ב בתחילת היום</span>
+                            <span class="text-lg">הכנתי את המטלה בקלאסרום (טיוטה)</span>
                         </label>
                     </div>
                     <div class="flex items-center">
                         <input type="checkbox" id="check2" class="hidden checkbox-custom" onchange="updateChecklistProgress()">
                         <label for="check2" class="flex items-center gap-4 p-4 rounded-xl border-2 border-gray-100 cursor-pointer w-full transition-all hover:bg-gray-50">
                             <span class="w-6 h-6 border-2 border-gray-300 rounded flex items-center justify-center bg-white transition-all check-box-inner"></span>
-                            <span class="text-lg">פרסמתי מטלה א-סינכרונית בקלאסרום</span>
+                            <span class="text-lg">דיווחתי נוכחות במשו"ב (עד 10:00)</span>
                         </label>
                     </div>
                     <div class="flex items-center">
                         <input type="checkbox" id="check3" class="hidden checkbox-custom" onchange="updateChecklistProgress()">
                         <label for="check3" class="flex items-center gap-4 p-4 rounded-xl border-2 border-gray-100 cursor-pointer w-full transition-all hover:bg-gray-50">
                             <span class="w-6 h-6 border-2 border-gray-300 rounded flex items-center justify-center bg-white transition-all check-box-inner"></span>
-                            <span class="text-lg">קיימתי מפגש Meet עם התלמידים (20 דק')</span>
+                            <span class="text-lg">קיימתי מפגש Meet סינכרוני</span>
                         </label>
                     </div>
                     <div class="flex items-center">
                         <input type="checkbox" id="check4" class="hidden checkbox-custom" onchange="updateChecklistProgress()">
                         <label for="check4" class="flex items-center gap-4 p-4 rounded-xl border-2 border-gray-100 cursor-pointer w-full transition-all hover:bg-gray-50">
                             <span class="w-6 h-6 border-2 border-gray-300 rounded flex items-center justify-center bg-white transition-all check-box-inner"></span>
-                            <span class="text-lg">וידאתי ביצוע מטלות אחה"צ</span>
+                            <span class="text-lg">פרסמתי את המטלה (Assign) בשעה 15:00</span>
                         </label>
                     </div>
                     <div class="flex items-center">
                         <input type="checkbox" id="check5" class="hidden checkbox-custom" onchange="updateChecklistProgress()">
                         <label for="check5" class="flex items-center gap-4 p-4 rounded-xl border-2 border-gray-100 cursor-pointer w-full transition-all hover:bg-gray-50">
                             <span class="w-6 h-6 border-2 border-gray-300 rounded flex items-center justify-center bg-white transition-all check-box-inner"></span>
-                            <span class="text-lg">דיווחתי לרכז על תוצאות התרגיל</span>
+                            <span class="text-lg">שלחתי דיווח סיום לרכזת</span>
                         </label>
                     </div>
                 </div>
@@ -294,7 +369,7 @@
         <!-- Report Tab -->
         <div id="report" class="tab-content">
             <div class="bg-white p-8 rounded-2xl shadow-sm border border-gray-100">
-                <h2 class="text-2xl font-bold mb-6 border-b pb-4 text-blue-800 text-center">דיווח תוצאות התרגיל (למורה)</h2>
+                <h2 class="text-2xl font-bold mb-6 border-b pb-4 text-blue-800 text-center">דיווח למריאלה - רכזת תקשוב</h2>
                 <form class="space-y-6 max-w-lg mx-auto" onsubmit="event.preventDefault(); showConfirmation();">
                     <div>
                         <label class="block text-sm font-semibold text-gray-700 mb-2">שם מלא של המורה</label>
@@ -305,50 +380,43 @@
                         <input type="text" required class="w-full p-3 bg-gray-50 border border-gray-200 rounded-lg focus:ring-2 focus:ring-blue-500 outline-none transition-all">
                     </div>
                     <div>
-                        <label class="block text-sm font-semibold text-gray-700 mb-2">מספר תלמידים שהשתתפו במפגש Meet</label>
+                        <label class="block text-sm font-semibold text-gray-700 mb-2">כמה תלמידים השתתפו במפגש?</label>
                         <input type="number" required class="w-full p-3 bg-gray-50 border border-gray-200 rounded-lg focus:ring-2 focus:ring-blue-500 outline-none transition-all">
                     </div>
                     <div>
-                        <label class="block text-sm font-semibold text-gray-700 mb-2">קשיים טכניים או הערות</label>
+                        <label class="block text-sm font-semibold text-gray-700 mb-2">הערות / תקלות</label>
                         <textarea class="w-full p-3 bg-gray-50 border border-gray-200 rounded-lg focus:ring-2 focus:ring-blue-500 outline-none transition-all" rows="3"></textarea>
                     </div>
                     <button type="submit" class="w-full bg-blue-600 text-white font-bold py-4 rounded-xl hover:bg-blue-700 shadow-lg hover:shadow-xl transition-all flex items-center justify-center gap-2">
                         <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
-                        שליחת דיווח לרכז
+                        שליחת דיווח
                     </button>
                 </form>
                 <div id="formSuccess" class="hidden mt-6 bg-green-100 p-4 rounded-lg text-green-800 text-center font-bold">
-                    הדיווח נשלח בהצלחה! תודה על שיתוף הפעולה.
+                    הדיווח נשלח בהצלחה למריאלה! תודה על שיתוף הפעולה.
                 </div>
             </div>
         </div>
 
     </main>
 
-    <footer class="mt-20 py-12 bg-gray-100 border-t border-gray-200 text-center text-gray-500">
-        <p class="mb-2 font-bold text-gray-700">רכז טכנו-פדגוגי - עמל חדרה</p>
-        <p class="text-sm">זמין לכם לכל שאלה או תמיכה טכנית</p>
+    <footer class="mt-20 py-8 bg-gray-800 text-white text-center">
+        <p class="font-bold text-lg mb-2">בית הספר הרב תחומי למדעים ולאמנויות עמל חדרה</p>
+        <p class="text-gray-300 mb-1">רכזת טכנו-פדגוגיה: מריאלה שטיין</p>
+        <p class="text-blue-300 font-mono text-lg tracking-wider">050-8456642</p>
+        <p class="text-xs text-gray-500 mt-6">נבנה עבור תרגיל למידה בחירום תשפ"ו</p>
     </footer>
 
     <script>
         function showTab(tabId) {
-            // Hide all contents
             document.querySelectorAll('.tab-content').forEach(content => {
                 content.classList.remove('active');
             });
-            
-            // Deactivate all buttons
             document.querySelectorAll('.nav-button').forEach(btn => {
                 btn.classList.remove('active');
             });
-
-            // Show current tab
             document.getElementById(tabId).classList.add('active');
-            
-            // Activate current button
             document.getElementById('btn-' + tabId).classList.add('active');
-            
-            // Scroll to top
             window.scrollTo({ top: 0, behavior: 'smooth' });
         }
 
@@ -364,7 +432,6 @@
                 message.classList.add('hidden');
             }
 
-            // Style inner checkboxes manually since we hidden them for custom look
             checkboxes.forEach(c => {
                 const label = c.nextElementSibling;
                 const inner = label.querySelector('.check-box-inner');
