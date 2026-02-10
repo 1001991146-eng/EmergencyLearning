@@ -1,0 +1,320 @@
+import React, { useState } from 'react';
+import { 
+  Calendar, 
+  CheckCircle2, 
+  Video, 
+  FileText, 
+  Users, 
+  ClipboardCheck, 
+  Send,
+  AlertCircle,
+  Smartphone,
+  Info,
+  ChevronRight,
+  UserCheck
+} from 'lucide-react';
+
+const App = () => {
+  const [activeTab, setActiveTab] = useState('home');
+  const [checklist, setChecklist] = useState({
+    attendance: false,
+    meetSetup: false,
+    taskPublished: false,
+    studentSubmission: false,
+    reportSent: false
+  });
+
+  const toggleCheck = (item) => {
+    setChecklist(prev => ({ ...prev, [item]: !prev[item] }));
+  };
+
+  const TabButton = ({ id, label, icon: Icon }) => (
+    <button
+      onClick={() => setActiveTab(id)}
+      className={`flex items-center gap-2 px-4 py-3 rounded-lg transition-all duration-200 ${
+        activeTab === id 
+          ? 'bg-blue-600 text-white shadow-md' 
+          : 'bg-white text-gray-600 hover:bg-blue-50'
+      }`}
+    >
+      <Icon size={20} />
+      <span className="font-medium">{label}</span>
+    </button>
+  );
+
+  const Step = ({ number, title, content }) => (
+    <div className="flex gap-4 mb-6 group">
+      <div className="flex-shrink-0 w-10 h-10 bg-blue-100 text-blue-600 rounded-full flex items-center justify-center font-bold text-lg group-hover:bg-blue-600 group-hover:text-white transition-colors">
+        {number}
+      </div>
+      <div className="pt-1">
+        <h4 className="text-lg font-bold text-gray-800 mb-2">{title}</h4>
+        <div className="text-gray-600 leading-relaxed">{content}</div>
+      </div>
+    </div>
+  );
+
+  return (
+    <div className="min-h-screen bg-gray-50 text-right" dir="rtl">
+      {/* Header */}
+      <header className="bg-white border-b border-gray-200 sticky top-0 z-10">
+        <div className="max-w-6xl mx-auto px-4 py-4 flex flex-col md:flex-row justify-between items-center gap-4">
+          <div className="flex items-center gap-3">
+            <div className="bg-blue-600 p-2 rounded-lg">
+              <AlertCircle className="text-white" size={24} />
+            </div>
+            <div>
+              <h1 className="text-2xl font-bold text-gray-900">מרכז תרגיל למידה בחירום</h1>
+              <p className="text-sm text-gray-500">ליווי טכנו-פדגוגי לצוות ההוראה והתלמידים</p>
+            </div>
+          </div>
+          
+          <nav className="flex flex-wrap justify-center gap-2">
+            <TabButton id="home" label="ראשי" icon={Calendar} />
+            <TabButton id="mashov" label="דיווח משו\"ב" icon={UserCheck} />
+            <TabButton id="sync" label="מפגש סינכרוני" icon={Video} />
+            <TabButton id="teacher_async" label="מטלה (מורה)" icon={FileText} />
+            <TabButton id="student_async" label="מטלה (תלמיד)" icon={Users} />
+            <TabButton id="checklist" label="Checklist" icon={ClipboardCheck} />
+            <TabButton id="report" label="דיווח סיום" icon={Send} />
+          </nav>
+        </div>
+      </header>
+
+      <main className="max-w-4xl mx-auto px-4 py-8">
+        
+        {/* Home Tab */}
+        {activeTab === 'home' && (
+          <div className="space-y-6 animate-in fade-in duration-500">
+            <div className="bg-blue-600 rounded-2xl p-8 text-white shadow-xl relative overflow-hidden">
+              <div className="relative z-10">
+                <h2 className="text-3xl font-bold mb-4">מתרגלים מוכנות לחירום</h2>
+                <p className="text-lg opacity-90 mb-6 max-w-2xl">
+                  התרגיל נועד לוודא שכולנו - מורים ותלמידים - יודעים כיצד לעבור ללמידה מרחוק בצורה חלקה ומהירה בעת הצורך.
+                </p>
+                <div className="flex gap-4">
+                  <span className="bg-white/20 px-4 py-2 rounded-full text-sm font-medium">חברה ערבית: 15-19.2</span>
+                  <span className="bg-white/20 px-4 py-2 rounded-full text-sm font-medium">שאר בתיה"ס: 22-25.2</span>
+                </div>
+              </div>
+              <div className="absolute left-0 bottom-0 opacity-10 transform -translate-x-1/4 translate-y-1/4">
+                <Info size={300} />
+              </div>
+            </div>
+
+            <div className="grid md:grid-cols-2 gap-6">
+              <div className="bg-white p-6 rounded-xl shadow-sm border border-gray-100">
+                <h3 className="text-xl font-bold mb-4 flex items-center gap-2">
+                  <Info className="text-blue-600" />
+                  לוח זמני התרגיל
+                </h3>
+                <ul className="space-y-3">
+                  <li className="flex items-center gap-2 text-gray-700">
+                    <ChevronRight size={18} className="text-blue-600" />
+                    <strong>שעות הבוקר:</strong> דיווח נוכחות ופרסום מטלה
+                  </li>
+                  <li className="flex items-center gap-2 text-gray-700">
+                    <ChevronRight size={18} className="text-blue-600" />
+                    <strong>במהלך יום הלימודים:</strong> מפגש סינכרוני (20 דקות)
+                  </li>
+                  <li className="flex items-center gap-2 text-gray-700">
+                    <ChevronRight size={18} className="text-blue-600" />
+                    <strong>שעות אחה"צ (15:00-21:00):</strong> ביצוע מטלה ע"י תלמידים
+                  </li>
+                </ul>
+              </div>
+              <div className="bg-blue-50 p-6 rounded-xl border border-blue-100">
+                <h3 className="text-xl font-bold text-blue-800 mb-4">קישורים חשובים</h3>
+                <div className="grid grid-cols-1 gap-3">
+                  <a href="https://mosdot.education.gov.il/personal/identification/" target="_blank" className="bg-white p-3 rounded-lg shadow-sm hover:shadow-md transition-shadow flex justify-between items-center text-blue-700 font-medium">
+                    <span>הזדהות אחידה (משרד החינוך)</span>
+                    <ChevronRight size={16} />
+                  </a>
+                  <a href="https://ms0157.github.io/ToolsAmalHadera/" target="_blank" className="bg-white p-3 rounded-lg shadow-sm hover:shadow-md transition-shadow flex justify-between items-center text-blue-700 font-medium">
+                    <span>אתר כלים דיגיטליים - עמל חדרה</span>
+                    <ChevronRight size={16} />
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        )}
+
+        {/* Mashov Tab */}
+        {activeTab === 'mashov' && (
+          <div className="bg-white p-8 rounded-2xl shadow-sm border border-gray-100 animate-in slide-in-from-left duration-300">
+            <h2 className="text-2xl font-bold mb-6 border-b pb-4">1. דיווח נוכחות במשו"ב</h2>
+            <Step 
+              number="1" 
+              title="כניסה למערכת" 
+              content="היכנסו לאפליקציית משו"ב בנייד או דרך המחשב באמצעות הזדהות אחידה."
+            />
+            <Step 
+              number="2" 
+              title="בחירת שיעור" 
+              content="בחרו את השיעור המתקיים בשעה הראשונה של התרגיל."
+            />
+            <Step 
+              number="3" 
+              title="דיווח סטטוס" 
+              content="סמנו 'נוכח' עבור תלמידים שקיימו קשר (דרך המפגש או המטלה). חשוב מאוד להגיע ל-100% דיווח בבוקר התרגיל."
+            />
+          </div>
+        )}
+
+        {/* Sync Meeting Tab */}
+        {activeTab === 'sync' && (
+          <div className="bg-white p-8 rounded-2xl shadow-sm border border-gray-100 animate-in slide-in-from-left duration-300">
+            <h2 className="text-2xl font-bold mb-6 border-b pb-4">2. קיום מפגש סינכרוני (Google Meet)</h2>
+            <div className="bg-yellow-50 border-r-4 border-yellow-400 p-4 mb-6">
+              <p className="text-yellow-800 font-medium italic">משך המפגש: כ-20 דקות במהלך יום הלימודים.</p>
+            </div>
+            <Step 
+              number="1" 
+              title="התחברות לחשבון מחוזי" 
+              content={
+                <div className="space-y-2">
+                  <p>ודאו שאתם מחוברים לחשבון ה-Google המחוזי (edu-haifa.org.il).</p>
+                  <p className="text-sm bg-gray-50 p-2 rounded flex items-center gap-2">
+                    <Smartphone size={16} />
+                    טיפ: בצעו את החיבור גם בסלולרי לגיבוי.
+                  </p>
+                </div>
+              }
+            />
+            <Step 
+              number="2" 
+              title="פתיחת שיחה" 
+              content="פתחו את היישום Meet, לחצו על 'פגישה חדשה' והעתיקו את הקישור."
+            />
+            <Step 
+              number="3" 
+              title="הצטרפות תלמידים" 
+              content="שלחו את הקישור לתלמידים דרך קבוצת הוואטסאפ הכיתתית או דרך הקלאסרום. המתינו להצטרפותם למפגש קצר להסבר על מהלך היום."
+            />
+          </div>
+        )}
+
+        {/* Teacher Async Tab */}
+        {activeTab === 'teacher_async' && (
+          <div className="bg-white p-8 rounded-2xl shadow-sm border border-gray-100 animate-in slide-in-from-left duration-300">
+            <h2 className="text-2xl font-bold mb-6 border-b pb-4">3. מטלה א-סינכרונית (צד מורה)</h2>
+            <p className="text-gray-500 mb-6 italic">*יש לבצע שלב זה לפני מועד התרגיל*</p>
+            <Step 
+              number="1" 
+              title="כניסה לקלאסרום" 
+              content="היכנסו לבית הספר הוירטואלי דרך הזדהות אחידה ועברו ליישום Classroom."
+            />
+            <Step 
+              number="2" 
+              title="יצירת מטלה" 
+              content="צרו מטלה חדשה תחת הכותרת 'תרגיל למידה בחירום - [שם המקצוע]'."
+            />
+            <Step 
+              number="3" 
+              title="הוראות פשוטות" 
+              content="פרסמו מטלה קלה לביצוע (למשל: צפייה בסרטון קצר ומענה על שאלה, או העלאת קובץ). הגדירו את זמן הביצוע לשעות אחה\"צ של יום התרגיל."
+            />
+          </div>
+        )}
+
+        {/* Student Async Tab */}
+        {activeTab === 'student_async' && (
+          <div className="bg-white p-8 rounded-2xl shadow-sm border border-gray-100 animate-in slide-in-from-left duration-300">
+            <h2 className="text-2xl font-bold mb-6 border-b pb-4">4. מטלה א-סינכרונית (צד תלמיד)</h2>
+            <Step 
+              number="1" 
+              title="כניסה למרחב הכיתתי" 
+              content="התלמידים נכנסים לקלאסרום דרך הזדהות אחידה (בית הספר הוירטואלי)."
+            />
+            <Step 
+              number="2" 
+              title="איתור המטלה" 
+              content="על התלמידים למצוא את המטלה שפורסמה תחת השם 'תרגיל למידה בחירום'."
+            />
+            <Step 
+              number="3" 
+              title="הגשה" 
+              content="ביצוע המשימה ולחיצה על כפתור 'הגשה' (Turn In) בתוך הקלאסרום בין השעות 15:00-21:00."
+            />
+          </div>
+        )}
+
+        {/* Checklist Tab */}
+        {activeTab === 'checklist' && (
+          <div className="bg-white p-8 rounded-2xl shadow-sm border border-gray-100 animate-in zoom-in duration-300">
+            <h2 className="text-2xl font-bold mb-6 border-b pb-4">צ'ק ליסט אישי למורה</h2>
+            <div className="space-y-4">
+              {[
+                { id: 'attendance', label: 'דיווחתי נוכחות במשו"ב בבוקר התרגיל' },
+                { id: 'meetSetup', label: 'קיימתי מפגש Meet של 20 דקות' },
+                { id: 'taskPublished', label: 'פרסמתי מטלה בקלאסרום מראש' },
+                { id: 'studentSubmission', label: 'וידאתי שתלמידים הגישו את המטלה' },
+                { id: 'reportSent', label: 'שלחתי דיווח סופי לרכז התקשוב' }
+              ].map(item => (
+                <div 
+                  key={item.id}
+                  onClick={() => toggleCheck(item.id)}
+                  className={`flex items-center gap-4 p-4 rounded-xl border-2 cursor-pointer transition-all ${
+                    checklist[item.id] ? 'border-green-500 bg-green-50' : 'border-gray-100 hover:border-blue-200'
+                  }`}
+                >
+                  <div className={`w-6 h-6 rounded flex items-center justify-center border-2 ${
+                    checklist[item.id] ? 'bg-green-500 border-green-500 text-white' : 'border-gray-300'
+                  }`}>
+                    {checklist[item.id] && <CheckCircle2 size={18} />}
+                  </div>
+                  <span className={`text-lg ${checklist[item.id] ? 'text-green-800 font-medium' : 'text-gray-600'}`}>
+                    {item.label}
+                  </span>
+                </div>
+              ))}
+            </div>
+            {Object.values(checklist).every(v => v) && (
+              <div className="mt-8 bg-green-100 p-4 rounded-lg text-green-800 text-center font-bold animate-bounce">
+                כל הכבוד! סיימת את כל שלבי התרגיל בהצלחה! 🏆
+              </div>
+            )}
+          </div>
+        )}
+
+        {/* Report Tab */}
+        {activeTab === 'report' && (
+          <div className="bg-white p-8 rounded-2xl shadow-sm border border-gray-100 animate-in slide-in-from-bottom duration-300">
+            <h2 className="text-2xl font-bold mb-6 border-b pb-4 text-center">דיווח תוצאות תרגיל (למורה)</h2>
+            <form className="space-y-6 max-w-lg mx-auto" onSubmit={(e) => e.preventDefault()}>
+              <div>
+                <label className="block text-sm font-medium text-gray-700 mb-1">שם המורה</label>
+                <input type="text" className="w-full p-3 bg-gray-50 border border-gray-200 rounded-lg focus:ring-2 focus:ring-blue-500 outline-none" placeholder="הכנס שם מלא" />
+              </div>
+              <div>
+                <label className="block text-sm font-medium text-gray-700 mb-1">כיתה</label>
+                <input type="text" className="w-full p-3 bg-gray-50 border border-gray-200 rounded-lg focus:ring-2 focus:ring-blue-500 outline-none" placeholder="לדוגמה: י' 4" />
+              </div>
+              <div>
+                <label className="block text-sm font-medium text-gray-700 mb-1">אחוז נוכחות במפגש הסינכרוני (%)</label>
+                <input type="number" className="w-full p-3 bg-gray-50 border border-gray-200 rounded-lg focus:ring-2 focus:ring-blue-500 outline-none" />
+              </div>
+              <div>
+                <label className="block text-sm font-medium text-gray-700 mb-1">האם נתקלת בקשיים טכניים?</label>
+                <textarea className="w-full p-3 bg-gray-50 border border-gray-200 rounded-lg focus:ring-2 focus:ring-blue-500 outline-none" rows="3"></textarea>
+              </div>
+              <button className="w-full bg-blue-600 text-white font-bold py-4 rounded-xl hover:bg-blue-700 shadow-lg hover:shadow-xl transition-all flex items-center justify-center gap-2">
+                <Send size={20} />
+                שליחת דיווח לרכז
+              </button>
+            </form>
+          </div>
+        )}
+
+      </main>
+
+      <footer className="mt-20 py-10 bg-gray-100 border-t border-gray-200 text-center text-gray-500">
+        <p className="mb-2 font-medium">רכז טכנו-פדגוגי - עמל חדרה</p>
+        <p className="text-sm">זמין עבורכם לכל שאלה או תקלה טכנית במייל או בוואטסאפ</p>
+      </footer>
+    </div>
+  );
+};
+
+export default App;
